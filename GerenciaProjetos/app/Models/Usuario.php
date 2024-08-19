@@ -14,6 +14,7 @@ class Usuario extends Model
         'nomeUsuario',
         'emailUsuario',
         'cargoUsuario',
+        'nomeGerenteUsuario',
         'nomeEmpresaUsuario',
         'cpfUsuario',
         'passwordUsuario'
