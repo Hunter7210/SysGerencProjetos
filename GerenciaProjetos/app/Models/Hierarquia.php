@@ -9,4 +9,5 @@ class Hierarquia extends Model
 {
     protected $fillable = ['administrador','usuarioComum', 'gerente'];
     
+    
 }

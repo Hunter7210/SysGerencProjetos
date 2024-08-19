@@ -12,8 +12,6 @@ class Projeto extends Model
 
     protected $table = 'projetos'; // Nome da tabela
 
-    protected $primaryKey = 'idProjetoPk'; // Chave primária
-
     public $incrementing = true; // Chave primária é auto-incrementável
 
     protected $fillable = [
@@ -28,7 +26,7 @@ class Projeto extends Model
     // Relação com o modelo Usuario
     public function criador()
     {
-        return $this->belongsTo(User::class, 'criadorProjetoFk', 'id');
+        return $this->belongsTo(Usuario::class, 'criadorProjetoFk', 'id');
     }
 
     // Relação com o modelo Equipe
