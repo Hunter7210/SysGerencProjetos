@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hierarquia extends Model
 {
-    use HasFactory;
+    protected $fillable = ['administrador','usuarioComum', 'gerente'];
+    
 }
