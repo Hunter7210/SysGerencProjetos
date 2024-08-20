@@ -139,13 +139,13 @@ Será desenvolvido um sistema para o gerenciamento de projetos, onde cada usuár
   <summary><strong>Diagramas para Desenvolvimento</strong></summary>
 
 ### Diagrama de Classe:
-![Diagrama de Classe](GerenciaProjetos/diagrams/diagrama_classe.png)
+![Diagrama de Classe](GerenciaProjetos/diagrams/Diagrama_classe.png)
 
 ### Diagrama de Uso:
-![Diagrama de Uso](GerenciaProjetos/diagrams/diagrama_uso.png)
+![Diagrama de Uso](GerenciaProjetos/diagrams/Diagrama_uso.png)
 
 ### Diagrama de Fluxo:
-![Diagrama de Fluxo](GerenciaProjetos/diagrams/diagrama_fluxo_1.png)
-![Diagrama de Fluxo](GerenciaProjetos/diagrams/diagrama_fluxo_2.png)
+![Diagrama de Fluxo](GerenciaProjetos/diagrams/Diagrama_fluxo_1.png)
+![Diagrama de Fluxo](GerenciaProjetos/diagrams/Diagrama_fluxo_2.png)
 
 </details>
