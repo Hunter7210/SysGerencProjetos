@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Hierarquia extends Model
 {
-    protected $fillable = ['administrador','usuarioComum', 'gerente'];
-    
-    
+    use HasFactory;
+    protected $fillable = ['cargo'];
 }

@@ -18,9 +18,9 @@ class CreateUsuariosTable extends Migration
             $table->string('nomeUsuario');
             $table->string('emailUsuario')->unique();
             $table->unsignedBigInteger('cargoUsuario'); // Alterado para chave estrangeira
+            $table->string('nomeGerenteUsuario')->nullable();
             $table->string('nomeEmpresaUsuario')->nullable();
-            $table->string('cnpjUsuario')->unique()->nullable();
-            $table->string('passwordUsuario');
+            $table->string('password');
             $table->timestamps();
 
             // Define a chave estrangeira

@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class Inscricao extends Model
+class Contem extends Model
 {
-    use HasFactory;
+    use Notifiable, HasFactory;
 
-    protected $fillable = ['idUsuarioFK', 'idProjetoFK'];
+    protected $fillable = ['idEquipeFK', 'idProjetoFK'];
 
-    public function usuario()
+    public function equipe()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Equipe::class);
     }
+
     public function projeto()
     {
         return $this->belongsTo(Projeto::class);

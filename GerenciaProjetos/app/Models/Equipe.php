@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Equipe extends Model
 {
-    use HasFactory;
-
-    protected $fillable = ['nomeEquipe', 'qtdMembros'];
+    use Notifiable,HasFactory;
     
+    protected $fillable = ['nomeEquipe', 'qtdMembrosEquipe'];
+
+
 }
+

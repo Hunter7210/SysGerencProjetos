@@ -16,11 +16,10 @@ class Usuario extends Model
         'cargoUsuario',
         'nomeGerenteUsuario',
         'nomeEmpresaUsuario',
-        'cpfUsuario',
-        'passwordUsuario'
+        'password'
     ];
 
-    protected $hidden = ['passwordUsuario', 'remember_token'];
+    protected $hidden = ['password', 'remember_token'];
 
     public function incriscoes()
     {
