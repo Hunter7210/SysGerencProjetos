@@ -1,5 +1,7 @@
 <?php
-
+/* 
+        'nomeGerenteUsuario',
+        'nomeEmpresaUsuario', */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,14 +16,12 @@ class Usuario extends Model
         'nomeUsuario',
         'emailUsuario',
         'cargoUsuario',
-        'nomeGerenteUsuario',
-        'nomeEmpresaUsuario',
         'password'
     ];
 
     protected $hidden = ['password', 'remember_token'];
 
-    public function incriscoes()
+    public function incricoes()
     {
         return $this->hasMany(Inscricao::class);
     }

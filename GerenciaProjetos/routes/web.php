@@ -14,16 +14,16 @@ Route::get('/cadastro', function () {
 }); */
 
 // Rota para exibir o formulário de login
-Route::get('/login', [UsuariosController::class, 'showLoginForm'])->name('usuario.login.form');
+Route::get('/login', [UsuariosController::class, 'showLoginForm'])->name('usuarios.login.form');
 
 // Rota para processar o login
-Route::post('/login', [UsuariosController::class, 'login'])->name('usuario.login');
+Route::post('/login', [UsuariosController::class, 'login'])->name('usuarios.login');
 
 // Rota para exibir o formulário de registro
-Route::get('/cadastro', [UsuariosController::class, 'showRegistroForm'])->name('usuario.cadastro.form');
+Route::get('/cadastro', [UsuariosController::class, 'showRegistroForm'])->name('usuarios.cadastro.form');
 
 // Rota para processar o registro
-Route::post('/cadastro', [UsuariosController::class, 'cadastro'])->name('usuario.cadastro');
+Route::post('/cadastro', [UsuariosController::class, 'cadastro'])->name('usuarios.cadastro');
 
 // Rota para logout
-Route::post('/logout', [UsuariosController::class, 'logout'])->name('usuario.logout');
+Route::post('/logout', [UsuariosController::class, 'logout'])->name('usuarios.logout');

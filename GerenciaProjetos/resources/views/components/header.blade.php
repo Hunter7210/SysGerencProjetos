@@ -1,6 +1,3 @@
-{{-- @extends('layouts.app')
-@section('content')
-
 <header>
     <div class="container">
         <div class="logo">
@@ -22,7 +19,7 @@
                 @endphp
 
                 @if ($user->isEmpresa())
-                    <form action="{{ route('usuario.logout') }}" method="POST" style="display:inline;">
+                    <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
                         @csrf
                         <button type="submit" class="login">Sair</button>
                     </form>
@@ -30,7 +27,7 @@
                     <a href="/vagas" type="submit" class="login">Cadastrar Vaga</a>
                    
                 @elseif($user->isUser())
-                    <form action="{{ route('usuario.logout') }}" method="POST" style="display:inline;">
+                    <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
                         @csrf
                         <button type="submit" class="login">Sair</button>
                     </form>
@@ -38,12 +35,9 @@
                 
                 @endif
             @else
-                <a href="{{ route('usuario.login') }}" class="login">Login</a>
-                <a href="{{ route('usuario.cadastro') }}" class="signup">Cadastre-se</a>
+                <a href="{{ route('usuarios.login') }}" class="login">Login</a>
+                <a href="{{ route('usuarios.cadastro') }}" class="signup">Cadastre-se</a>
             @endif
         </div>
     </div>
 </header>
-
-@endsection
- --}}

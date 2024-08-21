@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,19 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Portal Vagas') }}</title>
     <!-- links de css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/registro.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vagas/index.css') }}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
 <body>
     <!-- header -->
     @include('components.header')
-    <div> </div>
 
         @yield('content')
     

@@ -3,3 +3,6 @@
 
 <a href="/cadastro">Cadastro</a>
 <a href="/login">login</a>
+
+
+@endsection

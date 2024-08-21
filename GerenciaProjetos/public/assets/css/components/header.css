@@ -1,0 +1,82 @@
+/* Reset básico para garantir que o estilo seja consistente entre diferentes navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #f39c12;
+}
+
+.user-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-options a,
+.user-options button {
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-options a:hover,
+.user-options button:hover {
+    background-color: #2980b9;
+}
+
+.login {
+    background-color: #e74c3c;
+}
+
+.login:hover {
+    background-color: #c0392b;
+}
+
+.signup {
+    background-color: #2ecc71;
+}
+
+.signup:hover {
+    background-color: #27ae60;
+}

@@ -8,6 +8,11 @@ use Illuminate\Notifications\Notifiable;
 
 class Hierarquia extends Model
 {
-    use HasFactory;
+    use Notifiable,HasFactory;
     protected $fillable = ['cargo'];
+
+    public function usuario()
+    {
+        return $this->hasMany(Usuario::class);
+    }
 }

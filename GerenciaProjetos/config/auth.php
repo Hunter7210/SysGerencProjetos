@@ -1,6 +1,8 @@
 <?php
 
+
 return [
+
 
     /*
     |--------------------------------------------------------------------------
@@ -12,10 +14,13 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
+
+
     'defaults' => [
         'guard' => 'usuario',
         'passwords' => 'users',
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +39,7 @@ return [
     |
     */
 
+
     'guards' => [
         'usuario' => [
             'driver' => 'session',
@@ -46,6 +52,8 @@ return [
             'provider' => 'users',
         ],
     ],
+
+
 
 
     /*
@@ -65,17 +73,20 @@ return [
     |
     */
 
+
     'providers' => [
         'usuario' => [
             'driver' => 'eloquent',
             'model' => App\Models\Usuario::class,
         ],
 
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -96,6 +107,7 @@ return [
     |
     */
 
+
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -103,6 +115,7 @@ return [
             'expire' => 60,
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -117,4 +130,6 @@ return [
 
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
+
+
 ];

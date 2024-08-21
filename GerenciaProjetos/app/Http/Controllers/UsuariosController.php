@@ -42,7 +42,7 @@ class UsuariosController extends Controller
     // Exibir o formulário de registro
     public function showRegistroForm()
     {
-        return view('usuario.cadastro');
+        return view('usuarios.cadastro');
     }
 
 
@@ -53,25 +53,21 @@ class UsuariosController extends Controller
         $request->validate([
             'nomeUsuario' => 'required|string|max:255',
             'emailUsuario' => 'required|string|email|max:255|unique:usuarios',
-            'cargoUsuario' => 'required|numeric',
-            'nomeGerenteUsuario' => 'nullable|string|max:255', // Uso de nullable caso o campo não seja obrigatório
-            'nomeEmpresaUsuario' => 'nullable|string|max:255',
-            'passwordUsuario' => 'required|string|min:8|confirmed',
+            'cargoUsuario' => 'required|string|max:255',
+            'password' => 'required|string|min:2|confirmed',
         ]);
-
+        
         // Cria um novo usuário
         $usuario = Usuario::create([
-            'nomeUsuario' => $request->nome,
-            'emailUsuario' => $request->email,
-            'cargoUsuario' => $request->cargo,/* 
-            'nomeGerenteUsuario' => $request->nomeGerente,*/
-            'nomeEmpresaUsuario' => $request->nomeEmpresa, 
-            'passwordUsuario' => Hash::make($request->password),
+            'nomeUsuario' => $request->nomeUsuario,
+            'emailUsuario' => $request->emailUsuario,
+            'cargoUsuario' => $request->cargoUsuario,
+            'password' => Hash::make($request->password),
         ]);
-
+        
         // Faz login automático do novo usuário
         Auth::guard('usuario')->login($usuario);
-
+        
         return redirect('/dashboard');
     }
 
