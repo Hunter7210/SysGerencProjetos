@@ -12,7 +12,7 @@ class CreateProjetosTable extends Migration
             $table->id(); // Primary key
             $table->string('nomeProjeto'); // VARCHAR(255)
             $table->string('descricaoProjeto'); // VARCHAR(255)
-            $table->dateTime('terminoProjeto')->nullable(); // DATETIME, nullable se não for obrigatório
+            $table->dateTime('terminoProjeto'); // DATETIME, nullable se não for obrigatório
             $table->string('responsaveisProjeto'); // VARCHAR(255)
             $table->unsignedBigInteger('criadorProjetoFk'); // FOREIGN KEY Usuario
             $table->unsignedBigInteger('equipeProjetoFk'); // FOREIGN KEY equipe

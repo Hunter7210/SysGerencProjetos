@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsuariosTable extends Migration
+class CreateUsuarioTable extends Migration
 {
     /**
      * Execute the migrations.
@@ -19,11 +19,13 @@ class CreateUsuariosTable extends Migration
             $table->string('emailUsuario')->unique();
             $table->unsignedBigInteger('cargoUsuario'); // Alterado para chave estrangeira
             $table->string('nomeGerenteUsuario')->nullable();
-            $table->string('nomeEmpresaUsuario')->nullable();
+            $table->string('nomeEmpresaUsuario')->nullable();   
+            $table->unsignedBigInteger('equipe_id')->nullable(); // Relaciona o usuário a uma equipe
             $table->string('password');
             $table->timestamps();
-
+            
             // Define a chave estrangeira
+            $table->foreign('equipe_id')->references('id')->on('equipes')->onDelete('set null');
             $table->foreign('cargoUsuario')->references('id')->on('hierarquia')->onDelete('cascade');
         });
     }

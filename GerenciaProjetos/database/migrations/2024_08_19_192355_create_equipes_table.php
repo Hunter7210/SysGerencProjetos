@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nomeEquipe');
             $table->integer('qtdMembrosEquipe')->nullable();
+            $table->integer('usuCriadorEquipe');
             $table->timestamps();
         });
     }

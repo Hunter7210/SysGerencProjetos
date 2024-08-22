@@ -8,11 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Projeto extends Model
 {
-    use HasFactory;
-
-    protected $table = 'projetos'; // Nome da tabela
-
-    public $incrementing = true; // Chave primária é auto-incrementável
+    use Notifiable,HasFactory;
 
     protected $fillable = [
         'nomeProjeto',

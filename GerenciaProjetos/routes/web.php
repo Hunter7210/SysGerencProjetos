@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjetosController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +29,16 @@ Route::post('/cadastro', [UsuariosController::class, 'cadastro'])->name('usuario
 
 // Rota para logout
 Route::post('/logout', [UsuariosController::class, 'logout'])->name('usuarios.logout');
+/* 
+Route::post('/dashboardUsu', [UsuariosController::class, 'logout'])->name('usuarios.logout'); */
+
+Route::get('/equipe/cadastro', [EquipeController::class, 'cadastroForm'])->name('equipes.cadastro');
+
+Route::post('/equipe/cadastro', [EquipeController::class, 'cadastro'])->name('equipes.cadastro.form');
+
+Route::get('/equipes', [EquipeController::class, 'index'])->name('equipes.dashboard');
+
+Route::get('equipe/{equipe}', [EquipeController::class, 'show'])->middleware('auth')->name('equipes.show');
+
+
+Route::resource('projetos', ProjetosController::class);

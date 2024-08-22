@@ -18,20 +18,21 @@
                     $user = Auth::user();
                 @endphp
 
-                @if ($user->isEmpresa())
+                @if ($user->isGerente())
                     <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
                         @csrf
                         <button type="submit" class="login">Sair</button>
                     </form>
 
-                    <a href="/vagas" type="submit" class="login">Cadastrar Vaga</a>
-                   
+                    <a href="/equipe/cadastro" type="submit" class="login">Criar Equipe</a>
+                    {{-- <a href="/vagas" type="submit" class="login">Cadastrar Vaga</a>
+                    --}}
                 @elseif($user->isUser())
                     <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
                         @csrf
                         <button type="submit" class="login">Sair</button>
                     </form>
-                    <a href="/vagas" type="submit" class="login">Ver Vagas</a>
+                    <a href="/vagas" type="submit" class="login">Ver Projetos</a>
                 
                 @endif
             @else

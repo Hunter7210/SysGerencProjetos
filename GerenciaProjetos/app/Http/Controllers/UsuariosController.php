@@ -21,7 +21,7 @@ class UsuariosController extends Controller
     {
         // Validações para o login
         $credentials = $request->validate([
-            'email' => ['required', 'emailUsuario'],
+            'emailUsuario' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
@@ -29,13 +29,13 @@ class UsuariosController extends Controller
         // Tenta autenticar com o guard 'usuario'
         if (Auth::guard('usuario')->attempt($credentials)) {
             $request->session()->regenerate(); // Regenera a sessão para evitar fixação de sessão
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/equipes');
         }
 
         // Se falhar, retorna com erro
         return back()->withErrors([
-            'email' => 'As credenciais não correspondem aos nossos registros.',
-        ])->onlyInput('email');
+            'emailUsuario' => 'As credenciais não correspondem aos nossos registros.',
+        ])->onlyInput('emailUsuario');
     }
 
 
@@ -64,11 +64,12 @@ class UsuariosController extends Controller
             'cargoUsuario' => $request->cargoUsuario,
             'password' => Hash::make($request->password),
         ]);
-        
+        /* 
         // Faz login automático do novo usuário
         Auth::guard('usuario')->login($usuario);
-        
-        return redirect('/dashboard');
+         */
+
+        return redirect('/login');
     }
 
 

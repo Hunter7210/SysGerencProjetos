@@ -4,11 +4,11 @@
         'nomeEmpresaUsuario', */
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
     use Notifiable, HasFactory;
 
@@ -16,7 +16,8 @@ class Usuario extends Model
         'nomeUsuario',
         'emailUsuario',
         'cargoUsuario',
-        'password'
+        'password',
+        'equipe_id'
     ];
 
     protected $hidden = ['password', 'remember_token'];
@@ -30,4 +31,19 @@ class Usuario extends Model
     {
         return $this->belongsTo(Hierarquia::class, 'cargoUsuario');
     }
+
+    public function isUser(){
+        return $this->cargoUsuario === 1;
+    }
+    
+    public function isGerente(){
+
+        return $this->cargoUsuario === 2;
+    }
+
+      // Relação com o modelo Equipe (um usuário pertence a uma equipe)
+      public function equipe()
+      {
+          return $this->belongsTo(Equipe::class, 'equipe_id');
+      }
 }
