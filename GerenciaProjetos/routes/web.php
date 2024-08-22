@@ -3,6 +3,7 @@
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjetosController;
+use App\Http\Controllers\TarefasController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,5 +41,10 @@ Route::get('/equipes', [EquipeController::class, 'index'])->name('equipes.dashbo
 
 Route::get('equipe/{equipe}', [EquipeController::class, 'show'])->middleware('auth')->name('equipes.show');
 
-
 Route::resource('projetos', ProjetosController::class);
+
+Route::get('/tarefas/create/{projetoId}', [TarefasController::class, 'create'])->name('tarefas.create');
+
+Route::resource('tarefas', TarefasController::class);
+
+

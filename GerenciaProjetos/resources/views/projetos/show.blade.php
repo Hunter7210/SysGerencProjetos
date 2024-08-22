@@ -11,6 +11,11 @@
 
     <a href="{{ route('projetos.edit', $projeto->id) }}" class="btn btn-primary">Editar Projeto</a>
 
+    <a href="{{ route('tarefas.index', $projeto->id) }}" class="btn btn-primary">Ver todas as tarefas</a>
+    
+    <a href="{{ route('tarefas.create', ['projetoId' => $projeto->id]) }}" class="btn btn-primary">Criar Tarefa</a>
+
+
     <form action="{{ route('projetos.destroy', $projeto->id) }}" method="POST" style="display:inline;">
         @csrf
         @method('DELETE')

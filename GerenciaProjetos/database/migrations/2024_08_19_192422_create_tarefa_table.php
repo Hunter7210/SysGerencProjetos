@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tarefa', function (Blueprint $table) {
+        Schema::create('tarefas', function (Blueprint $table) {
             $table->id();
+            $table->string('nomeTarefa');
+            $table->date('prazoTarefa');
+            $table->text('descricaoTarefa');
+            $table->string('atribuicaoTarefa');
             $table->timestamps();
-        });
+        }); 
     }
 
     /**
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarefa');
+        Schema::dropIfExists('tarefas');
     }
 };
