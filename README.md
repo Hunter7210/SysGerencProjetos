@@ -51,6 +51,13 @@ Será desenvolvido um sistema para o gerenciamento de projetos, onde cada usuár
 - **Documentação:** README (GitHub)
 - **Controle de Versão:** GitHub
 
+### Recursos Humanos
+- **Desenvolvedores Backend Pleno:** 2 
+- **Desenvolvedores Backend Junior:** 1 
+- **Desenvolvedores Frontend Pleno:** 1
+- **Desenvolvedor Banco de Dados Pleno:** 1
+- **Estagiario:** 1
+
 ### Análise de Riscos
 
 **Riscos e Soluções:**
