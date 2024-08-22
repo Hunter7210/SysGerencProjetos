@@ -32,7 +32,7 @@
                         @csrf
                         <button type="submit" class="login">Sair</button>
                     </form>
-                    <a href="/vagas" type="submit" class="login">Ver Projetos</a>
+                    <a href="/projetos" type="submit" class="login">Ver Projetos</a>
                 
                 @endif
             @else

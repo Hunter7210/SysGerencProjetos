@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Projeto;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,22 +20,15 @@ class TarefasController extends Controller
         return view('tarefas.index', compact('tarefas'));
     }
 
-    public function create($projetoId)
+
+    // Exibe o formulário de criação de projeto
+    public function create()
     {
-        // Busca o projeto pelo ID
-        $projeto = Projeto::findOrFail($projetoId);
-
-        // Busca os usuários relacionados à equipe do projeto
-        $usuarios = $projeto->equipe->usuarios;
-
-        // Retorna a view de criação da tarefa, passando os usuários e o projeto
-        return view('tarefas.create', compact('usuarios', 'projeto'));
+        return view('tarefas.create');
     }
 
     public function store(Request $request)
     {
-
-
         // Validação dos dados recebidos
         $validatedData = $request->validate([
             'nomeTarefa' => 'required|string|max:255',
@@ -45,14 +37,28 @@ class TarefasController extends Controller
             'atribuicaoTarefa' => 'required|string|max:255',
         ]);
 
-        // Criação da nova tarefa
+        // Criação do projeto
+        Tarefa::create([
+            'nomeTarefa' => $validatedData['nomeTarefa'],
+            'prazoTarefa' => $validatedData['prazoTarefa'],
+            'descricaoTarefa' => $validatedData['descricaoTarefa'],
+            'atribuicaoTarefa' => $validatedData['atribuicaoTarefa'],
+
+        ]);
+
+        // Redireciona para a página de projetos com uma mensagem de sucesso
+        return redirect()->route('tarefas.index')->with('success', 'Projeto criado com sucesso!');
+
+        /* 
+            // Criação da nova tarefa
         $tarefa = Tarefa::create($validatedData);
+
 
         // Retorna uma resposta de sucesso, pode ser um redirecionamento ou um JSON
         return response()->json([
             'message' => 'Tarefa criada com sucesso!',
             'tarefa' => $tarefa,
-        ], 201); // Código de status HTTP 201 (Created)
+        ], 201); // Código de status HTTP 201 (Created) */
     }
 
     // Exibe os detalhes de um projeto específico
@@ -68,7 +74,7 @@ class TarefasController extends Controller
     {
         $tarefa = Tarefa::findOrFail($id);
 
-        return view('tarefa.edit', compact('tarefa'));
+        return view('tarefas.edit', compact('tarefa'));
     }
 
     // Processa a atualização de um projeto

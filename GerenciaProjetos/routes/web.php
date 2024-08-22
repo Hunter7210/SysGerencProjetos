@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InscricaoController;
 use App\Http\Controllers\ProjetosController;
 use App\Http\Controllers\TarefasController;
 use App\Http\Controllers\UsuariosController;
@@ -41,10 +42,15 @@ Route::get('/equipes', [EquipeController::class, 'index'])->name('equipes.dashbo
 
 Route::get('equipe/{equipe}', [EquipeController::class, 'show'])->middleware('auth')->name('equipes.show');
 
+
+
+
+Route::get('/inscricoes/create', [InscricaoController::class, 'create'])->name('inscricoes.create');
+Route::post('/inscricoes', [InscricaoController::class, 'store'])->name('inscricoes.store');
+
+
 Route::resource('projetos', ProjetosController::class);
-
+/*
 Route::get('/tarefas/create/{projetoId}', [TarefasController::class, 'create'])->name('tarefas.create');
-
+ */
 Route::resource('tarefas', TarefasController::class);
-
-

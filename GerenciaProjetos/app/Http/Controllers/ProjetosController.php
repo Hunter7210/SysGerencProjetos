@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipe;
 use App\Models\Projeto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,24 +14,29 @@ class ProjetosController extends Controller
         // Obtém o usuário autenticado
         $usuario = Auth::user();
 
-        // Obtém os projetos criados pelo usuário ou associados à equipe do usuário
-        $projetos = Projeto::where('criadorProjetoFk', $usuario->id)
-            ->orWhere('equipeProjetoFk', $usuario->equipe_id)
-            ->get();
+        if ($usuario->cargoUsuario === 2) {
+            // Obtém os projetos criados pelo usuário ou associados à equipe do usuário
+            $projetos = Projeto::where('criadorProjetoFk', $usuario->id)
+                ->orWhere('equipeProjetoFk', $usuario->equipe_id)
+                ->get();
+        } else {    
+            // Busca todos os projetos sem considerar a equipe do usuário
+            $projetos = Projeto::all();
+        }
 
         // Retorna a view com os projetos
         return view('projetos.index', compact('projetos'));
     }
-    
-    public function indexall()
+
+    /*   public function indexall()
     {
         // Busca todos os projetos sem considerar a equipe do usuário
         $projetos = Projeto::all();
 
         // Retorna a view com todos os projetos
-        return view('projetos.index', compact('projetos'));
+        return view('projetos.indexall', compact('projetos'));
     }
-
+ */
 
 
     // Exibe o formulário de criação de projeto
