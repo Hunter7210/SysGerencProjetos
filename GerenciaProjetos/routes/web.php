@@ -11,12 +11,8 @@ use Illuminate\Support\Facades\Route;
 // Rota para a pagina principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-/* // Rota para a pagina de cadastrar-se/registrar-se
-Route::get('/cadastro', function () {
-    return view('usuario.cadastro');
-}); */
-
+// Página específica para usuários
+Route::get('/homeComum', [HomeController::class, 'homeCom'])->name('usuarios.homeCom');
 
 // Rota para exibir o formulário de login
 Route::get('/login', [UsuariosController::class, 'showLoginForm'])->name('usuarios.login.form');

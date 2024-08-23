@@ -16,15 +16,13 @@ class ProjetosController extends Controller
         // Obtém o usuário autenticado
         $usuario = Auth::user();
 
-        if ($usuario->cargoUsuario === 2) {
-            // Obtém os projetos criados pelo usuário ou associados à equipe do usuário
-            $projetos = Projeto::where('criadorProjetoFk', $usuario->id)
-                ->orWhere('equipeProjetoFk', $usuario->equipe_id)
-                ->get();
-        } else {
-            // Busca todos os projetos sem considerar a equipe do usuário
-            $projetos = Projeto::all();
-        }
+       /*  // Obtém os projetos criados pelo usuário ou associados à equipe do usuário
+        $projetos = Projeto::where('criadorProjetoFk', $usuario->id)
+            ->orWhere('equipeProjetoFk', $usuario->equipe_id)
+            ->get(); */
+
+        $projetos = Projeto::all();
+
 
         // Retorna a view com os projetos
         return view('projetos.index', compact('projetos'));
@@ -48,7 +46,7 @@ class ProjetosController extends Controller
         $equipe =  Equipe::findOrFail($id);
 
         // Passar a equipe para a view
-    return view('projetos.create', ['equipe' => $equipe]);
+        return view('projetos.create', ['equipe' => $equipe]);
     }
 
     // Processa o formulário de criação de um novo projeto
@@ -72,7 +70,7 @@ class ProjetosController extends Controller
             'terminoProjeto' => $validatedData['terminoProjeto'],
             'responsaveisProjeto' => $validatedData['responsaveisProjeto'],
             'criadorProjetoFk' => Auth::id(), // O usuário autenticado é o criador do projeto
-             'equipeProjetoFk' => $validatedData['equipeProjetoFk'],
+            'equipeProjetoFk' => $validatedData['equipeProjetoFk'],
         ]);
 
         // Redireciona para a página de projetos com uma mensagem de sucesso

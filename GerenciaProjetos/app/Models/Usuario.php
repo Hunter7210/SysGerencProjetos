@@ -2,6 +2,7 @@
 /* 
         'nomeGerenteUsuario',
         'nomeEmpresaUsuario', */
+
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -32,18 +33,21 @@ class Usuario extends Authenticatable
         return $this->belongsTo(Hierarquia::class, 'cargoUsuario');
     }
 
-    public function isUser(){
+    public function isUser()
+    {
         return $this->cargoUsuario === 1;
     }
-    
-    public function isGerente(){
+
+    public function isGerente()
+    {
 
         return $this->cargoUsuario === 2;
     }
 
-      // Relação com o modelo Equipe (um usuário pertence a uma equipe)
-      public function equipe()
-      {
-          return $this->belongsTo(Equipe::class, 'equipe_id');
-      }
+    // Relação com o modelo Equipe (um usuário pertence a uma equipe)
+    public function equipe()
+    {
+        return $this->belongsTo(Equipe::class, 'equipe_id');
+    }
+
 }

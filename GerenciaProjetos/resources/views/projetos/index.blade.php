@@ -31,19 +31,25 @@
             @endif
         @else
             @if ($projetos->isEmpty())
-                <p>No momento não há nenhum projeto cadastrado. Aguarde ou contate um ADM</p>
-            @else
-                <h1>Projetos</h1>
-                <ul>
-                    @foreach ($projetos as $projeto)
-                        <li>
-
-                            {{ $projeto->nomeProjeto }} - Termino: {{ $projeto->terminoProjeto }}
-                            <a href="{{ route('inscricoes.create', $projeto->id) }}">Solicitar entrada</a>
-                        </li>
-                    @endforeach
-                </ul>
+                <p>Você não tem nenhum projeto cadastrado.</p>
+                
+                <li> <a href="{{ route('projetos.index') }}" class="btn btn-primary">Ver Projetos</a></li>
+                @else
+                @if ($projetos->isEmpty())
+                    <p>No momento não há nenhum projeto cadastrado. Aguarde ou contate um ADM</p>
+                @else
+                    <h1>Projetos</h1>
+                    <ul>
+                        @foreach ($projetos as $projeto)
+                            <li>
+                                {{ $projeto->nomeProjeto }} - Termino: {{ $projeto->terminoProjeto }}
+                                <a href="{{ route('inscricoes.create', $projeto->id) }}">Solicitar entrada</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
             @endif
         @endif
     @endif
 @endsection
+

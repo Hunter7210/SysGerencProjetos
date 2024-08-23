@@ -32,7 +32,7 @@ class UsuariosController extends Controller
             if (Auth::user()->cargoUsuario === 2) {
                 $link = '/equipes';
             } elseif (Auth::user()->cargoUsuario === 1) {
-                $link = '/projetos';
+                $link = '/homeComum';
             }
             // $request->session()->regenerate(); // Regenera a sessão para evitar fixação de sessão
             return redirect()->intended($link);

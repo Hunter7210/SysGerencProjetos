@@ -2,13 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Projeto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        /* $vagas = Vaga::latest()->take(2)->get(); */ /* Pega as ultimas 3 inserções no banco de dados  */
-        return view('home'/* , compact('vagas') */);
+        // Corrigido o caminho da view
+        return view('home');
+    }
+
+    public function homeCom()
+    {
+        $usuario = Auth::user();
+
+        // Obtém projetos relacionados ao usuário
+        $projetos = Projeto::where('criadorProjetoFk', $usuario->id)->get();
+
+        // Obtém equipes das quais o usuário participa
+        // Certifique-se de que o relacionamento 'equipes' está definido no modelo Usuario
+        // $equipes = $usuario->equipes;
+
+        return view('usuarios.homeCom', [
+            'projetos' => $projetos,
+           /*  'equipes' => $equipes */
+        ]);
     }
 }

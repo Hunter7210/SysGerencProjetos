@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Projeto extends Model
 {
-    use Notifiable,HasFactory;
+    use Notifiable, HasFactory;
 
     protected $fillable = [
         'nomeProjeto',
