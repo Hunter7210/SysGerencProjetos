@@ -14,7 +14,7 @@
     <form action="{{ route('tarefas.concluir', $tarefa->id) }}" method="POST" style="display:inline;">
         @csrf
         @method('PATCH')
-        <button type="submit" class="btn btn-success">Marcar como Concluída</button>
+        <button type="submit" class="btn btn-success" value="true">Marcar como Concluída</button>
     </form>
 
     <form action="{{ route('tarefas.destroy', $tarefa->id) }}" method="POST" style="display:inline;">
