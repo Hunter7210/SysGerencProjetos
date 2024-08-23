@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,13 +19,25 @@ class TarefasController extends Controller
  */
         // Retorna a view com as equipes
         return view('tarefas.index', compact('tarefas'));
+
+
+        /*   public function create()
+    {
+        // Obtém todos os usuários e projetos para o formulário
+        $usuarios = Usuario::all();
+        $projetos = Projeto::all();
+
+        return view('inscricoes.create', compact('usuarios', 'projetos'));
+    }
+ */
     }
 
 
     // Exibe o formulário de criação de projeto
     public function create()
     {
-        return view('tarefas.create');
+        $usuarios = Usuario::all();
+        return view('tarefas.create', compact('usuarios'));
     }
 
     public function store(Request $request)
@@ -104,5 +117,19 @@ class TarefasController extends Controller
         $tarefa->delete();
 
         return redirect()->route('tarefas.index')->with('success', 'Tarefa excluído com sucesso!');
+    }
+
+
+    public function markAsCompleted($id)
+    {
+        // Encontra a tarefa pelo ID
+        $tarefa = Tarefa::findOrFail($id);
+
+        // Marca a tarefa como concluída
+        $tarefa->status = 'concluída'; // Supondo que você tenha um campo 'status' no seu modelo Tarefa
+        $tarefa->save();
+
+        // Redireciona de volta para a lista de tarefas com uma mensagem de sucesso
+        return redirect()->route('tarefas.index')->with('success', 'Tarefa marcada como concluída!');
     }
 }

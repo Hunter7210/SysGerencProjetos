@@ -28,8 +28,14 @@ class UsuariosController extends Controller
 
         // Tenta autenticar com o guard 'usuario'
         if (Auth::guard('usuario')->attempt($credentials)) {
-            $request->session()->regenerate(); // Regenera a sessão para evitar fixação de sessão
-            return redirect()->intended('/equipes');
+            
+            if (Auth::user()->cargoUsuario === 2) {
+                $link = '/equipes';
+            } elseif (Auth::user()->cargoUsuario === 1) {
+                $link = '/projetos';
+            }
+            // $request->session()->regenerate(); // Regenera a sessão para evitar fixação de sessão
+            return redirect()->intended($link);
         }
 
         // Se falhar, retorna com erro
@@ -54,9 +60,9 @@ class UsuariosController extends Controller
             'nomeUsuario' => 'required|string|max:255',
             'emailUsuario' => 'required|string|email|max:255|unique:usuarios',
             'cargoUsuario' => 'required|string|max:255',
-            'password' => 'required|string|min:2|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
-        
+
         // Cria um novo usuário
         $usuario = Usuario::create([
             'nomeUsuario' => $request->nomeUsuario,

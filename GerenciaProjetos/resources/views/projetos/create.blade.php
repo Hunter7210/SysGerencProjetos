@@ -27,10 +27,9 @@
             <input type="text" name="responsaveisProjeto" class="form-control" value="{{ old('responsaveisProjeto') }}" required>
         </div>
 
-        <div class="form-group">
-            <label for="equipeProjetoFk">Equipe:</label>
-            <input type="number" name="equipeProjetoFk" class="form-control" value="{{ old('equipeProjetoFk') }}" required>
-        </div>
+           <!-- Campo oculto para armazenar o ID da equipe -->
+           <input type="hidden" name="equipeProjetoFk" value="{{ isset($equipe) ? $equipe->id : '' }}">
+
 
         <button type="submit" class="btn btn-primary">Salvar Projeto</button>
     </form>

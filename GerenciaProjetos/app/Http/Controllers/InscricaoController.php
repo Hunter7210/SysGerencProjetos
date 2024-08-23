@@ -6,32 +6,80 @@ use Illuminate\Http\Request;
 use App\Models\Inscricao; // Certifique-se de ter o modelo Inscricao
 use App\Models\Usuario; // Para listar os usuários no formulário
 use App\Models\Projeto; // Para listar os projetos no formulário
+use Illuminate\Support\Facades\Auth;
 
 class InscricaoController extends Controller
 {
-    public function create()
+    public function index()
     {
-        // Obtém todos os usuários e projetos para o formulário
-        $usuarios = Usuario::all();
-        $projetos = Projeto::all();
+        $usuarioId = Auth::id();
+        $inscricoes = Inscricao::where('idUsuarioFK', $usuarioId)
+            ->with('projeto')
+            ->get();
 
-        return view('inscricoes.create', compact('usuarios', 'projetos'));
+        return view('inscricoes.index', ['inscricoes' => $inscricoes]);
+    }
+
+    public function create($id)
+    {
+        $projeto = Projeto::findOrFail($id);
+        return view('inscricoes.create', ['projeto' => $projeto]);
     }
 
     public function store(Request $request)
     {
-        // Valida os dados da solicitação
         $request->validate([
-            'idUsuarioFK' => 'required|exists:usuarios,id', // Verifica se o usuário existe
-            'idProjetoFK' => 'required|exists:projetos,id', // Verifica se o projeto existe
+            'idProjetoFK' => 'required|exists:projetos,id',
+            'descricaoSolicitacao' => 'required|string|max:255',
+            'nomeUsu' => 'required|string|max:255',
         ]);
 
-        // Cria uma nova inscrição
         Inscricao::create([
-            'idUsuarioFK' => $request->input('idUsuarioFK'),
+            'idUsuarioFK' => Auth::id(),
             'idProjetoFK' => $request->input('idProjetoFK'),
+            'nomeUsuSolit' => $request->input('nomeUsu'),
+            'descricaoSolicitacao' => $request->input('descricaoSolicitacao'),
         ]);
 
         return redirect()->route('inscricoes.index')->with('success', 'Inscrição criada com sucesso!');
+    }
+
+    public function show($id)
+    {
+        $inscricao = Inscricao::findOrFail($id);
+        return view('inscricoes.show', ['inscricao' => $inscricao]);
+    }
+
+    public function edit($id)
+    {
+        $inscricao = Inscricao::findOrFail($id);
+        $projetos = Projeto::all();
+        return view('inscricoes.edit', ['inscricao' => $inscricao, 'projetos' => $projetos]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'idProjetoFK' => 'required|exists:projetos,id',
+            'descricaoSolicitacao' => 'required|string|max:255',
+            'nomeUsu' => 'required|string|max:255',
+        ]);
+
+        $inscricao = Inscricao::findOrFail($id);
+        $inscricao->update([
+            'idProjetoFK' => $request->input('idProjetoFK'),
+            'nomeUsuSolit' => $request->input('nomeUsu'),
+            'descricaoSolicitacao' => $request->input('descricaoSolicitacao'),
+        ]);
+
+        return redirect()->route('inscricoes.index')->with('success', 'Inscrição atualizada com sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        $inscricao = Inscricao::findOrFail($id);
+        $inscricao->delete();
+
+        return redirect()->route('inscricoes.index')->with('success', 'Inscrição deletada com sucesso!');
     }
 }

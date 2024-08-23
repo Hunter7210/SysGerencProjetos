@@ -23,8 +23,19 @@
                 <p>Erro ao carregar equipes.</p>
             @endif
         @else
-            <p>Para começar entre em algum projeto</p>
-            <li> <a href="{{ route('inscricoes') }}" class="btn btn-primary">Ver Projetos</a></li>
+            @if (isset($projetos) && $projeto->isEmpty())
+                <p>Você não está associado a nenhum projeto.</p>
+            @elseif(isset($projeto))
+                <ul>
+                    @foreach ($projeto as $projeto)
+                        <li>{{ $projetos->nomeProjeto }}</li>
+                        <li>{{ $projetos->descricaoProjeto}} </li>
+                        <li> <a href="{{ route('projetos.index') }}" class="btn btn-primary">Ver Projetos</a></li>
+                    @endforeach
+                </ul>
+            @else
+                <p>Erro ao carregar projetos.</p>
+            @endif
         @endif
     @else
         <p>Para acessar esta pagina é necessário login</p>

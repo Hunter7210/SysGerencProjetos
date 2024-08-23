@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Tarefa extends Model
 {
     use Notifiable, HasFactory;
-    protected $fillable = ['nomeTarefa', 'prazoTarefa', 'descricaoTarefa', 'atribuicaoTarefa'];
+    protected $fillable = ['nomeTarefa', 'prazoTarefa', 'descricaoTarefa', 'atribuicaoTarefa', 'statusTarefa'];
 
     // Relação com o modelo Usuario
     public function criador()

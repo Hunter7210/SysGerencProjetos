@@ -16,9 +16,15 @@
         </div>
         <hr>
         <a href="/projetos" type="submit" class="login">Ver Projetos Criados por mim</a>
-        <hr>
-        <a href="/projetos/create" type="submit" class="login">Criar Projetos</a>
+        <hr>{{-- 
+        <a href="/projetos/create" type="submit" class="login">Criar Projetos</a> --}}
         <div class="projetos-view">
+
+            
+    <form action="{{ route('projetos.create', $equipe->id) }}" method="GET" style="display:inline;">
+        @csrf
+        <button type="submit" class="login">Criar Projetos</button>
+    </form>
 
         </div>
     </div>

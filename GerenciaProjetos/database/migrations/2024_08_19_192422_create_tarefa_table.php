@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('prazoTarefa');
             $table->text('descricaoTarefa');
             $table->string('atribuicaoTarefa');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         }); 
     }

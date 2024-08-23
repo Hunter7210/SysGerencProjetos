@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipe;
 use App\Models\Projeto;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +21,7 @@ class ProjetosController extends Controller
             $projetos = Projeto::where('criadorProjetoFk', $usuario->id)
                 ->orWhere('equipeProjetoFk', $usuario->equipe_id)
                 ->get();
-        } else {    
+        } else {
             // Busca todos os projetos sem considerar a equipe do usuário
             $projetos = Projeto::all();
         }
@@ -40,9 +42,13 @@ class ProjetosController extends Controller
 
 
     // Exibe o formulário de criação de projeto
-    public function create()
+    public function create($id)
     {
-        return view('projetos.create');
+
+        $equipe =  Equipe::findOrFail($id);
+
+        // Passar a equipe para a view
+    return view('projetos.create', ['equipe' => $equipe]);
     }
 
     // Processa o formulário de criação de um novo projeto
@@ -57,6 +63,8 @@ class ProjetosController extends Controller
             'equipeProjetoFk' => 'required|exists:equipes,id', // Garantir que a equipe exista
         ]);
 
+
+
         // Criação do projeto
         Projeto::create([
             'nomeProjeto' => $validatedData['nomeProjeto'],
@@ -64,7 +72,7 @@ class ProjetosController extends Controller
             'terminoProjeto' => $validatedData['terminoProjeto'],
             'responsaveisProjeto' => $validatedData['responsaveisProjeto'],
             'criadorProjetoFk' => Auth::id(), // O usuário autenticado é o criador do projeto
-            'equipeProjetoFk' => $validatedData['equipeProjetoFk'],
+             'equipeProjetoFk' => $validatedData['equipeProjetoFk'],
         ]);
 
         // Redireciona para a página de projetos com uma mensagem de sucesso
