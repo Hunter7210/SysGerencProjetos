@@ -10,8 +10,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Corrigido o caminho da view
-        return view('home');
+        // Buscar todos os projetos com suas relações
+        $projetos = Projeto::with(['criador', 'equipe'])->get();
+
+        // Passar os dados para a view
+        return view('home', compact('projetos'));
     }
 
     public function homeCom()
@@ -27,7 +30,7 @@ class HomeController extends Controller
 
         return view('usuarios.homeCom', [
             'projetos' => $projetos,
-           /*  'equipes' => $equipes */
+            /*  'equipes' => $equipes */
         ]);
     }
 }

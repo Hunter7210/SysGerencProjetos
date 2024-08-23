@@ -1,9 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h2>Login</h2>
-    <form method="POST" action="{{ route('usuarios.login') }}">
+<style>
+    .containerLogin {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 90vh;
+        align-items: center;
+        justify-content: center;
+
+        background-color: antiquewhite
+ 
+    }
+    .formlogin{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        padding: 40px;
+        border-style: double;
+        border-width:2px;
+
+        background-color: whitesmoke
+    }
+
+    .form-group{
+        margin-top: 20px
+    }
+</style>
+<div class="containerLogin">
+    <form method="POST" action="{{ route('usuarios.login') }}" class="formlogin">
+        <h2>Login</h2>
         @csrf
 
         <!-- Email -->
